@@ -123,7 +123,12 @@ NewerOrEqualConfig(ci, cj) == NewerConfig(ci, cj) \/ ci = cj
 CanVoteForConfig(i, j, term) ==
     /\ currentTerm[i] < term
     /\ IsNewerOrEqualConfig(j, i)
-    
+
+\* A quorum of servers in the config of server i have i's config version.
+ConfigVersionQuorumCheck(i) ==
+    \E Q \in Quorums(config[i]) : \A t \in Q : 
+        /\ configVersion[t] = configVersion[i]
+
 \* A quorum of servers in the config of server i have i's config.
 ConfigQuorumCheck(i) ==
     \E Q \in Quorums(config[i]) : \A t \in Q : 
@@ -229,6 +234,7 @@ BecomeLeader(i, voteQuorum) ==
 CommitEntry(i, commitQuorum) ==
     LET ind == Len(log[i]) IN
     \* Must have some entries to commit.
+    /\ commitQuorum \in Quorums(config[i])
     /\ ind > 0
     \* This node is leader.
     /\ state[i] = Primary
@@ -290,7 +296,7 @@ Next ==
     \/ \E s, t \in Server : GetEntries(s, t)
     \/ \E s, t \in Server : RollbackEntries(s, t)
     \/ \E s \in Server : \E Q \in SUBSET Server :  BecomeLeader(s, Q)
-    \/ \E s \in Server :  \E Q \in Quorums(config[s]) : CommitEntry(s, Q)
+    \/ \E s \in Server :  \E Q \in SUBSET Server : CommitEntry(s, Q)
     \/ \E s,t \in Server : UpdateTerms(s, t)
     \/ \E s \in Server, newConfig \in SUBSET Server : Reconfig(s, newConfig)
     \/ \E s,t \in Server : SendConfig(s, t)
