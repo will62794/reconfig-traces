@@ -8,7 +8,7 @@ State 1: <Initial predicate>
 /\ currentTerm = (n1 :> 0 @@ n2 :> 0 @@ n3 :> 0)
 /\ configVersion = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
 
-State 2: <BecomeLeader(n1,{n1}) line 218, col 5 to line 231, col 69 of module MongoRaftReconfig>
+State 2: <BecomeLeader(n1,{n1}) line 223, col 5 to line 236, col 69 of module MongoRaftReconfig>
 /\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>>)
 /\ state = (n1 :> Primary @@ n2 :> Secondary @@ n3 :> Secondary)
 /\ immediatelyCommitted = {}
@@ -16,7 +16,7 @@ State 2: <BecomeLeader(n1,{n1}) line 218, col 5 to line 231, col 69 of module Mo
 /\ currentTerm = (n1 :> 1 @@ n2 :> 0 @@ n3 :> 0)
 /\ configVersion = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
 
-State 3: <ClientRequest(n1) line 182, col 5 to line 184, col 96 of module MongoRaftReconfig>
+State 3: <ClientRequest(n1) line 187, col 5 to line 189, col 96 of module MongoRaftReconfig>
 /\ log = (n1 :> <<1>> @@ n2 :> <<>> @@ n3 :> <<>>)
 /\ state = (n1 :> Primary @@ n2 :> Secondary @@ n3 :> Secondary)
 /\ immediatelyCommitted = {}
@@ -24,7 +24,7 @@ State 3: <ClientRequest(n1) line 182, col 5 to line 184, col 96 of module MongoR
 /\ currentTerm = (n1 :> 1 @@ n2 :> 0 @@ n3 :> 0)
 /\ configVersion = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
 
-State 4: <CommitEntry(n1,{n1}) line 237, col 5 to line 248, col 79 of module MongoRaftReconfig>
+State 4: <CommitEntry(n1,{n1}) line 242, col 5 to line 253, col 79 of module MongoRaftReconfig>
 /\ log = (n1 :> <<1>> @@ n2 :> <<>> @@ n3 :> <<>>)
 /\ state = (n1 :> Primary @@ n2 :> Secondary @@ n3 :> Secondary)
 /\ immediatelyCommitted = {<<1, 1>>}
@@ -32,7 +32,7 @@ State 4: <CommitEntry(n1,{n1}) line 237, col 5 to line 248, col 79 of module Mon
 /\ currentTerm = (n1 :> 1 @@ n2 :> 0 @@ n3 :> 0)
 /\ configVersion = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
 
-State 5: <UpdateTerms(n1,n2) line 256, col 5 to line 257, col 81 of module MongoRaftReconfig>
+State 5: <UpdateTerms(n1,n2) line 261, col 5 to line 262, col 81 of module MongoRaftReconfig>
 /\ log = (n1 :> <<1>> @@ n2 :> <<>> @@ n3 :> <<>>)
 /\ state = (n1 :> Primary @@ n2 :> Secondary @@ n3 :> Secondary)
 /\ immediatelyCommitted = {<<1, 1>>}
@@ -40,7 +40,7 @@ State 5: <UpdateTerms(n1,n2) line 256, col 5 to line 257, col 81 of module Mongo
 /\ currentTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 0)
 /\ configVersion = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
 
-State 6: <Reconfig(n1,{n1, n2}) line 262, col 5 to line 271, col 66 of module MongoRaftReconfig>
+State 6: <Reconfig(n1,{n1, n2}) line 267, col 5 to line 276, col 66 of module MongoRaftReconfig>
 /\ log = (n1 :> <<1>> @@ n2 :> <<>> @@ n3 :> <<>>)
 /\ state = (n1 :> Primary @@ n2 :> Secondary @@ n3 :> Secondary)
 /\ immediatelyCommitted = {<<1, 1>>}
@@ -48,7 +48,7 @@ State 6: <Reconfig(n1,{n1, n2}) line 262, col 5 to line 271, col 66 of module Mo
 /\ currentTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 0)
 /\ configVersion = (n1 :> 2 @@ n2 :> 1 @@ n3 :> 1)
 
-State 7: <SendConfig(n1,n2) line 275, col 5 to line 280, col 66 of module MongoRaftReconfig>
+State 7: <SendConfig(n1,n2) line 280, col 5 to line 285, col 66 of module MongoRaftReconfig>
 /\ log = (n1 :> <<1>> @@ n2 :> <<>> @@ n3 :> <<>>)
 /\ state = (n1 :> Primary @@ n2 :> Secondary @@ n3 :> Secondary)
 /\ immediatelyCommitted = {<<1, 1>>}
@@ -56,7 +56,7 @@ State 7: <SendConfig(n1,n2) line 275, col 5 to line 280, col 66 of module MongoR
 /\ currentTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 0)
 /\ configVersion = (n1 :> 2 @@ n2 :> 2 @@ n3 :> 1)
 
-State 8: <Reconfig(n1,{n1, n2, n3}) line 262, col 5 to line 271, col 66 of module MongoRaftReconfig>
+State 8: <Reconfig(n1,{n1, n2, n3}) line 267, col 5 to line 276, col 66 of module MongoRaftReconfig>
 /\ log = (n1 :> <<1>> @@ n2 :> <<>> @@ n3 :> <<>>)
 /\ state = (n1 :> Primary @@ n2 :> Secondary @@ n3 :> Secondary)
 /\ immediatelyCommitted = {<<1, 1>>}
@@ -64,7 +64,7 @@ State 8: <Reconfig(n1,{n1, n2, n3}) line 262, col 5 to line 271, col 66 of modul
 /\ currentTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 0)
 /\ configVersion = (n1 :> 3 @@ n2 :> 2 @@ n3 :> 1)
 
-State 9: <SendConfig(n1,n2) line 275, col 5 to line 280, col 66 of module MongoRaftReconfig>
+State 9: <SendConfig(n1,n2) line 280, col 5 to line 285, col 66 of module MongoRaftReconfig>
 /\ log = (n1 :> <<1>> @@ n2 :> <<>> @@ n3 :> <<>>)
 /\ state = (n1 :> Primary @@ n2 :> Secondary @@ n3 :> Secondary)
 /\ immediatelyCommitted = {<<1, 1>>}
@@ -72,7 +72,7 @@ State 9: <SendConfig(n1,n2) line 275, col 5 to line 280, col 66 of module MongoR
 /\ currentTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 0)
 /\ configVersion = (n1 :> 3 @@ n2 :> 3 @@ n3 :> 1)
 
-State 10: <BecomeLeader(n2,{n2, n3}) line 218, col 5 to line 231, col 69 of module MongoRaftReconfig>
+State 10: <BecomeLeader(n2,{n2, n3}) line 223, col 5 to line 236, col 69 of module MongoRaftReconfig>
 /\ log = (n1 :> <<1>> @@ n2 :> <<>> @@ n3 :> <<>>)
 /\ state = (n1 :> Primary @@ n2 :> Primary @@ n3 :> Secondary)
 /\ immediatelyCommitted = {<<1, 1>>}
@@ -80,6 +80,3 @@ State 10: <BecomeLeader(n2,{n2, n3}) line 218, col 5 to line 231, col 69 of modu
 /\ currentTerm = (n1 :> 1 @@ n2 :> 2 @@ n3 :> 2)
 /\ configVersion = (n1 :> 3 @@ n2 :> 3 @@ n3 :> 1)
 
-314357 states generated, 84133 distinct states found, 53218 states left on queue.
-The depth of the complete state graph search is 10.
-Finished in 07s at (2025-06-05 11:26:48)

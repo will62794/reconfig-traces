@@ -52,6 +52,11 @@ Quorums(S) == {i \in SUBSET(S) : Cardinality(i) * 2 > Cardinality(S)}
 \* Do all quorums of two sets intersect.
 QuorumsOverlap(x, y) == \A qx \in Quorums(x), qy \in Quorums(y) : qx \cap qy # {}
 
+\* Do all quorums of two sets intersect.
+QuorumsOverlapSingleNode(x, y) == 
+    /\ QuorumsOverlap(x, y) 
+    /\ (Cardinality(x) - Cardinality(y)) \in {1,-1}
+
 \* The min/max of a set of numbers.
 \* Min(s) == CHOOSE x \in s : \A y \in s : x <= y
 \* Max(s) == CHOOSE x \in s : \A y \in s : x >= y
@@ -262,7 +267,7 @@ Reconfig(i, newConfig) ==
     /\ state[i] = Primary
     /\ ConfigQuorumCheck(i)
     /\ TermQuorumCheck(i)
-    /\ QuorumsOverlap(config[i], newConfig)
+    /\ QuorumsOverlapSingleNode(config[i], newConfig)
     /\ OplogCommitment(i)
     /\ i \in newConfig
     /\ configTerm' = [configTerm EXCEPT ![i] = currentTerm[i]]
