@@ -1,0 +1,45 @@
+Error: Invariant OnePrimaryPerTerm is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>>)
+/\ state = (n1 :> Secondary @@ n2 :> Secondary @@ n3 :> Secondary)
+/\ immediatelyCommitted = {}
+/\ config = (n1 :> {n1} @@ n2 :> {n1} @@ n3 :> {n1})
+/\ currentTerm = (n1 :> 0 @@ n2 :> 0 @@ n3 :> 0)
+/\ configVersion = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
+
+State 2: <BecomeLeader(n1,{n1}) line 218, col 5 to line 231, col 69 of module MongoRaftReconfig>
+/\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>>)
+/\ state = (n1 :> Primary @@ n2 :> Secondary @@ n3 :> Secondary)
+/\ immediatelyCommitted = {}
+/\ config = (n1 :> {n1} @@ n2 :> {n1} @@ n3 :> {n1})
+/\ currentTerm = (n1 :> 1 @@ n2 :> 0 @@ n3 :> 0)
+/\ configVersion = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
+
+State 3: <Reconfig(n1,{n1, n2, n3}) line 262, col 5 to line 271, col 66 of module MongoRaftReconfig>
+/\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>>)
+/\ state = (n1 :> Primary @@ n2 :> Secondary @@ n3 :> Secondary)
+/\ immediatelyCommitted = {}
+/\ config = (n1 :> {n1, n2, n3} @@ n2 :> {n1} @@ n3 :> {n1})
+/\ currentTerm = (n1 :> 1 @@ n2 :> 0 @@ n3 :> 0)
+/\ configVersion = (n1 :> 2 @@ n2 :> 1 @@ n3 :> 1)
+
+State 4: <SendConfig(n1,n2) line 275, col 5 to line 280, col 66 of module MongoRaftReconfig>
+/\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>>)
+/\ state = (n1 :> Primary @@ n2 :> Secondary @@ n3 :> Secondary)
+/\ immediatelyCommitted = {}
+/\ config = (n1 :> {n1, n2, n3} @@ n2 :> {n1, n2, n3} @@ n3 :> {n1})
+/\ currentTerm = (n1 :> 1 @@ n2 :> 0 @@ n3 :> 0)
+/\ configVersion = (n1 :> 2 @@ n2 :> 2 @@ n3 :> 1)
+
+State 5: <BecomeLeader(n2,{n2, n3}) line 218, col 5 to line 231, col 69 of module MongoRaftReconfig>
+/\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>>)
+/\ state = (n1 :> Primary @@ n2 :> Primary @@ n3 :> Secondary)
+/\ immediatelyCommitted = {}
+/\ config = (n1 :> {n1, n2, n3} @@ n2 :> {n1, n2, n3} @@ n3 :> {n1})
+/\ currentTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
+/\ configVersion = (n1 :> 2 @@ n2 :> 2 @@ n3 :> 1)
+
+576 states generated, 303 distinct states found, 240 states left on queue.
+The depth of the complete state graph search is 5.
+Finished in 01s at (2025-06-05 11:26:41)

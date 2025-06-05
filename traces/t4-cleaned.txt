@@ -1,24 +1,3 @@
-TLC2 Version 2.20 of Day Month 20?? (rev: 96056d9)
-Warning: Please run the Java VM, which executes TLC with a throughput optimized garbage collector, by passing the "-XX:+UseParallelGC" property.
-(Use the -nowarning option to disable this warning.)
-Running breadth-first search Model-Checking with fp 25 and seed 688984664488375577 with 1 worker on 12 cores with 9216MB heap and 64MB offheap memory [pid: 30793] (Mac OS X 15.5 x86_64, Oracle Corporation 24.0.1 x86_64, MSBDiskFPSet, DiskStateQueue).
-Parsing file /Users/william.schultz/Documents/projects/reconfig/MongoRaftReconfig.tla
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-17082311505965827206/Naturals.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-17082311505965827206/Integers.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-17082311505965827206/FiniteSets.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-17082311505965827206/Sequences.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-17082311505965827206/TLC.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
-Semantic processing of module Naturals
-Semantic processing of module Integers
-Semantic processing of module Sequences
-Semantic processing of module FiniteSets
-Semantic processing of module TLC
-Semantic processing of module MongoRaftReconfig
-Starting... (2025-06-05 11:26:50)
-Computing initial states...
-Computed 2 initial states...
-Computed 4 initial states...
-Finished computing initial states: 7 states generated, with 3 of them distinct at 2025-06-05 11:26:50.
 Error: Invariant OnePrimaryPerTerm is violated.
 Error: The behavior up to this point is:
 State 1: <Initial predicate>
@@ -28,7 +7,6 @@ State 1: <Initial predicate>
 /\ config = (n1 :> {n1, n2, n3} @@ n2 :> {n1, n2, n3} @@ n3 :> {n1, n2, n3})
 /\ currentTerm = (n1 :> 0 @@ n2 :> 0 @@ n3 :> 0)
 /\ configVersion = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
-/\ configTerm = (n1 :> 0 @@ n2 :> 0 @@ n3 :> 0)
 
 State 2: <BecomeLeader(n1,{n1, n2, n3}) line 218, col 5 to line 231, col 69 of module MongoRaftReconfig>
 /\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>>)
@@ -37,7 +15,6 @@ State 2: <BecomeLeader(n1,{n1, n2, n3}) line 218, col 5 to line 231, col 69 of m
 /\ config = (n1 :> {n1, n2, n3} @@ n2 :> {n1, n2, n3} @@ n3 :> {n1, n2, n3})
 /\ currentTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
 /\ configVersion = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
-/\ configTerm = (n1 :> 1 @@ n2 :> 0 @@ n3 :> 0)
 
 State 3: <Reconfig(n1,{n1, n2}) line 262, col 5 to line 271, col 66 of module MongoRaftReconfig>
 /\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>>)
@@ -46,7 +23,6 @@ State 3: <Reconfig(n1,{n1, n2}) line 262, col 5 to line 271, col 66 of module Mo
 /\ config = (n1 :> {n1, n2} @@ n2 :> {n1, n2, n3} @@ n3 :> {n1, n2, n3})
 /\ currentTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
 /\ configVersion = (n1 :> 2 @@ n2 :> 1 @@ n3 :> 1)
-/\ configTerm = (n1 :> 1 @@ n2 :> 0 @@ n3 :> 0)
 
 State 4: <SendConfig(n1,n2) line 275, col 5 to line 280, col 66 of module MongoRaftReconfig>
 /\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>>)
@@ -55,7 +31,6 @@ State 4: <SendConfig(n1,n2) line 275, col 5 to line 280, col 66 of module MongoR
 /\ config = (n1 :> {n1, n2} @@ n2 :> {n1, n2} @@ n3 :> {n1, n2, n3})
 /\ currentTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
 /\ configVersion = (n1 :> 2 @@ n2 :> 2 @@ n3 :> 1)
-/\ configTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 0)
 
 State 5: <Reconfig(n1,{n1}) line 262, col 5 to line 271, col 66 of module MongoRaftReconfig>
 /\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>>)
@@ -64,7 +39,6 @@ State 5: <Reconfig(n1,{n1}) line 262, col 5 to line 271, col 66 of module MongoR
 /\ config = (n1 :> {n1} @@ n2 :> {n1, n2} @@ n3 :> {n1, n2, n3})
 /\ currentTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1)
 /\ configVersion = (n1 :> 3 @@ n2 :> 2 @@ n3 :> 1)
-/\ configTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 0)
 
 State 6: <BecomeLeader(n1,{n1}) line 218, col 5 to line 231, col 69 of module MongoRaftReconfig>
 /\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>>)
@@ -73,7 +47,6 @@ State 6: <BecomeLeader(n1,{n1}) line 218, col 5 to line 231, col 69 of module Mo
 /\ config = (n1 :> {n1} @@ n2 :> {n1, n2} @@ n3 :> {n1, n2, n3})
 /\ currentTerm = (n1 :> 2 @@ n2 :> 1 @@ n3 :> 1)
 /\ configVersion = (n1 :> 3 @@ n2 :> 2 @@ n3 :> 1)
-/\ configTerm = (n1 :> 2 @@ n2 :> 1 @@ n3 :> 0)
 
 State 7: <BecomeLeader(n3,{n2, n3}) line 218, col 5 to line 231, col 69 of module MongoRaftReconfig>
 /\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>>)
@@ -82,7 +55,6 @@ State 7: <BecomeLeader(n3,{n2, n3}) line 218, col 5 to line 231, col 69 of modul
 /\ config = (n1 :> {n1} @@ n2 :> {n1, n2} @@ n3 :> {n1, n2, n3})
 /\ currentTerm = (n1 :> 2 @@ n2 :> 2 @@ n3 :> 2)
 /\ configVersion = (n1 :> 3 @@ n2 :> 2 @@ n3 :> 1)
-/\ configTerm = (n1 :> 2 @@ n2 :> 1 @@ n3 :> 2)
 
 71626 states generated, 19243 distinct states found, 13912 states left on queue.
 The depth of the complete state graph search is 7.

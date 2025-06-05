@@ -290,6 +290,9 @@ Init ==
         /\ initConfig # {}
         /\ config = [i \in Server |-> initConfig]
 
+InitWith3Nodes == 
+    /\ Init
+    /\ \A s \in Server : Cardinality(config[s]) = 3
 
 Next == 
     \/ \E s \in Server : ClientRequest(s)
