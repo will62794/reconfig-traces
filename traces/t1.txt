@@ -1,24 +1,24 @@
 TLC2 Version 2.20 of Day Month 20?? (rev: 96056d9)
 Warning: Please run the Java VM, which executes TLC with a throughput optimized garbage collector, by passing the "-XX:+UseParallelGC" property.
 (Use the -nowarning option to disable this warning.)
-Running breadth-first search Model-Checking with fp 42 and seed -5378429579467366833 with 1 worker on 12 cores with 9216MB heap and 64MB offheap memory [pid: 44203] (Mac OS X 15.5 x86_64, Oracle Corporation 24.0.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+Running breadth-first search Model-Checking with fp 73 and seed 777909038517744890 with 1 worker on 12 cores with 9216MB heap and 64MB offheap memory [pid: 46035] (Mac OS X 15.5 x86_64, Oracle Corporation 24.0.1 x86_64, MSBDiskFPSet, DiskStateQueue).
 Parsing file /Users/william.schultz/Documents/projects/reconfig/MongoRaftReconfig.tla
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-737995154526688636/Naturals.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-737995154526688636/Integers.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-737995154526688636/FiniteSets.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-737995154526688636/Sequences.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-737995154526688636/TLC.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
+Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-17832821221049540906/Naturals.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
+Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-17832821221049540906/Integers.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
+Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-17832821221049540906/FiniteSets.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-17832821221049540906/Sequences.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
+Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-17832821221049540906/TLC.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
 Semantic processing of module Naturals
 Semantic processing of module Integers
 Semantic processing of module Sequences
 Semantic processing of module FiniteSets
 Semantic processing of module TLC
 Semantic processing of module MongoRaftReconfig
-Starting... (2025-06-05 13:21:23)
+Starting... (2025-06-05 13:34:37)
 Computing initial states...
 Computed 2 initial states...
 Computed 4 initial states...
-Finished computing initial states: 7 states generated, with 3 of them distinct at 2025-06-05 13:21:24.
+Finished computing initial states: 7 states generated, with 3 of them distinct at 2025-06-05 13:34:37.
 Error: Invariant OnePrimaryPerTerm is violated.
 Error: The behavior up to this point is:
 State 1: <Initial predicate>
@@ -77,4 +77,4 @@ State 6: <BecomeLeader(n2,{n2, n3}) line 223, col 5 to line 236, col 69 of modul
 
 1505 states generated, 618 distinct states found, 449 states left on queue.
 The depth of the complete state graph search is 6.
-Finished in 01s at (2025-06-05 13:21:24)
+Finished in 01s at (2025-06-05 13:34:38)
