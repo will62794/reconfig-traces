@@ -254,10 +254,10 @@ UpdateTerms(i, j) ==
 \* A reconfig occurs on node i. The node must currently be a leader.
 Reconfig(i, newConfig) ==
     /\ state[i] = Primary
-    \* /\ ConfigQuorumCheck(i)
-    \* /\ TermQuorumCheck(i)
-    \* /\ QuorumsOverlap(config[i], newConfig)
-    \* /\ OplogCommitment(i)
+    /\ ConfigQuorumCheck(i)
+    /\ TermQuorumCheck(i)
+    /\ QuorumsOverlap(config[i], newConfig)
+    /\ OplogCommitment(i)
     /\ i \in newConfig
     /\ configTerm' = [configTerm EXCEPT ![i] = currentTerm[i]]
     /\ configVersion' = [configVersion EXCEPT ![i] = configVersion[i] + 1]
