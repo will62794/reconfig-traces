@@ -1,4 +1,4 @@
-# Generate demo counterexample traces for MongoRaftReconfig TLA+ spec versions
+# Demo counterexamples for MongoRaftReconfig TLA+ spec versions
 
 Run
 ```
