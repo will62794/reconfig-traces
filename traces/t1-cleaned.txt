@@ -1,4 +1,4 @@
-Error: Invariant OnePrimaryPerTerm is violated.
+Error: Invariant ElectionSafety is violated.
 Error: The behavior up to this point is:
 State 1: <Initial predicate>
 /\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>>)

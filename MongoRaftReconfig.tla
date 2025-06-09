@@ -315,7 +315,7 @@ Next ==
 \* Correctness properties
 \*
 
-OnePrimaryPerTerm == 
+ElectionSafety == 
     \A s,t \in Server :
         (/\ state[s] = Primary 
          /\ state[t] = Primary

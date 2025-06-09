@@ -1,27 +1,27 @@
 TLC2 Version 2.20 of Day Month 20?? (rev: 96056d9)
 Warning: Please run the Java VM, which executes TLC with a throughput optimized garbage collector, by passing the "-XX:+UseParallelGC" property.
 (Use the -nowarning option to disable this warning.)
-Running breadth-first search Model-Checking with fp 61 and seed 4716924748376446868 with 1 worker on 12 cores with 9216MB heap and 64MB offheap memory [pid: 46061] (Mac OS X 15.5 x86_64, Oracle Corporation 24.0.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+Running breadth-first search Model-Checking with fp 74 and seed -7319780982986598016 with 1 worker on 12 cores with 9216MB heap and 64MB offheap memory [pid: 95276] (Mac OS X 15.5 x86_64, Oracle Corporation 24.0.1 x86_64, MSBDiskFPSet, DiskStateQueue).
 Parsing file /Users/william.schultz/Documents/projects/reconfig/MongoRaftReconfig.tla
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-1781540628589587243/Naturals.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-1781540628589587243/Integers.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-1781540628589587243/FiniteSets.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-1781540628589587243/Sequences.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
-Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-1781540628589587243/TLC.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
+Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-1434340585817332672/Naturals.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
+Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-1434340585817332672/Integers.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
+Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-1434340585817332672/FiniteSets.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-1434340585817332672/Sequences.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
+Parsing file /private/var/folders/sk/lgn4t7hj49n553snly1k5w640000gp/T/tlc-1434340585817332672/TLC.tla (jar:file:/Users/william.schultz/Documents/projects/reconfig/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
 Semantic processing of module Naturals
 Semantic processing of module Integers
 Semantic processing of module Sequences
 Semantic processing of module FiniteSets
 Semantic processing of module TLC
 Semantic processing of module MongoRaftReconfig
-Starting... (2025-06-05 13:34:44)
+Starting... (2025-06-09 10:46:29)
 Computing initial states...
 Computed 2 initial states...
 Computed 4 initial states...
 Computed 8 initial states...
-Finished computing initial states: 15 states generated, with 4 of them distinct at 2025-06-05 13:34:44.
-Progress(7) at 2025-06-05 13:34:47: 68,999 states generated (68,999 s/min), 11,921 distinct states found (11,921 ds/min), 8,072 states left on queue.
-Error: Invariant OnePrimaryPerTerm is violated.
+Finished computing initial states: 15 states generated, with 4 of them distinct at 2025-06-09 10:46:29.
+Progress(7) at 2025-06-09 10:46:32: 70,139 states generated (70,139 s/min), 12,034 distinct states found (12,034 ds/min), 8,131 states left on queue.
+Error: Invariant ElectionSafety is violated.
 Error: The behavior up to this point is:
 State 1: <Initial predicate>
 /\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>> @@ n4 :> <<>>)
@@ -121,4 +121,4 @@ State 8: <BecomeLeader(n2,{n2, n4}) line 223, col 5 to line 236, col 69 of modul
 
 207871 states generated, 27379 distinct states found, 15157 states left on queue.
 The depth of the complete state graph search is 8.
-Finished in 08s at (2025-06-05 13:34:52)
+Finished in 08s at (2025-06-09 10:46:36)
