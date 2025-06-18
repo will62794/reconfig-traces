@@ -1,5 +1,4 @@
 Error: Invariant ElectionSafety is violated.
-Error: The behavior up to this point is:
 State 1: <Initial predicate>
 /\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>> @@ n4 :> <<>>)
 /\ state = (n1 :> Secondary @@ n2 :> Secondary @@ n3 :> Secondary @@ n4 :> Secondary)
@@ -12,64 +11,33 @@ State 1: <Initial predicate>
 /\ configVersion = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1 @@ n4 :> 1)
 
 State 2: <BecomeLeader(n1,{n1, n2, n3}) of MongoRaftReconfig>
-/\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>> @@ n4 :> <<>>)
 /\ state = (n1 :> Primary @@ n2 :> Secondary @@ n3 :> Secondary @@ n4 :> Secondary)
-/\ immediatelyCommitted = {}
-/\ config = ( n1 :> {n1, n2, n3, n4} @@
-  n2 :> {n1, n2, n3, n4} @@
-  n3 :> {n1, n2, n3, n4} @@
-  n4 :> {n1, n2, n3, n4} )
 /\ currentTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1 @@ n4 :> 0)
-/\ configVersion = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1 @@ n4 :> 1)
 
 State 3: <Reconfig(n1,{n1, n2, n3}) of MongoRaftReconfig>
-/\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>> @@ n4 :> <<>>)
-/\ state = (n1 :> Primary @@ n2 :> Secondary @@ n3 :> Secondary @@ n4 :> Secondary)
-/\ immediatelyCommitted = {}
 /\ config = ( n1 :> {n1, n2, n3} @@
   n2 :> {n1, n2, n3, n4} @@
   n3 :> {n1, n2, n3, n4} @@
   n4 :> {n1, n2, n3, n4} )
-/\ currentTerm = (n1 :> 1 @@ n2 :> 1 @@ n3 :> 1 @@ n4 :> 0)
 /\ configVersion = (n1 :> 2 @@ n2 :> 1 @@ n3 :> 1 @@ n4 :> 1)
 
 State 4: <BecomeLeader(n2,{n2, n3, n4}) of MongoRaftReconfig>
-/\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>> @@ n4 :> <<>>)
 /\ state = (n1 :> Primary @@ n2 :> Primary @@ n3 :> Secondary @@ n4 :> Secondary)
-/\ immediatelyCommitted = {}
-/\ config = ( n1 :> {n1, n2, n3} @@
-  n2 :> {n1, n2, n3, n4} @@
-  n3 :> {n1, n2, n3, n4} @@
-  n4 :> {n1, n2, n3, n4} )
 /\ currentTerm = (n1 :> 1 @@ n2 :> 2 @@ n3 :> 2 @@ n4 :> 2)
-/\ configVersion = (n1 :> 2 @@ n2 :> 1 @@ n3 :> 1 @@ n4 :> 1)
 
 State 5: <UpdateTerms(n2,n1) of MongoRaftReconfig>
-/\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>> @@ n4 :> <<>>)
 /\ state = (n1 :> Secondary @@ n2 :> Primary @@ n3 :> Secondary @@ n4 :> Secondary)
-/\ immediatelyCommitted = {}
-/\ config = ( n1 :> {n1, n2, n3} @@
-  n2 :> {n1, n2, n3, n4} @@
-  n3 :> {n1, n2, n3, n4} @@
-  n4 :> {n1, n2, n3, n4} )
 /\ currentTerm = (n1 :> 2 @@ n2 :> 2 @@ n3 :> 2 @@ n4 :> 2)
-/\ configVersion = (n1 :> 2 @@ n2 :> 1 @@ n3 :> 1 @@ n4 :> 1)
 
 State 6: <Reconfig(n2,{n1, n2, n4}) of MongoRaftReconfig>
-/\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>> @@ n4 :> <<>>)
-/\ state = (n1 :> Secondary @@ n2 :> Primary @@ n3 :> Secondary @@ n4 :> Secondary)
-/\ immediatelyCommitted = {}
 /\ config = ( n1 :> {n1, n2, n3} @@
   n2 :> {n1, n2, n4} @@
   n3 :> {n1, n2, n3, n4} @@
   n4 :> {n1, n2, n3, n4} )
-/\ currentTerm = (n1 :> 2 @@ n2 :> 2 @@ n3 :> 2 @@ n4 :> 2)
 /\ configVersion = (n1 :> 2 @@ n2 :> 2 @@ n3 :> 1 @@ n4 :> 1)
 
 State 7: <BecomeLeader(n1,{n1, n3}) of MongoRaftReconfig>
-/\ log = (n1 :> <<>> @@ n2 :> <<>> @@ n3 :> <<>> @@ n4 :> <<>>)
 /\ state = (n1 :> Primary @@ n2 :> Primary @@ n3 :> Secondary @@ n4 :> Secondary)
-/\ immediatelyCommitted = {}
 /\ config = ( n1 :> {n1, n2, n3} @@
   n2 :> {n1, n2, n4} @@
   n3 :> {n1, n2, n3, n4} @@
