@@ -13,14 +13,14 @@ CONSTANTS Secondary, Primary, Nil
 VARIABLE currentTerm
 VARIABLE state
 VARIABLE log
-VARIABLE immediatelyCommitted
+VARIABLE committed
 
 \* Configuration related variables.
 VARIABLE config
 VARIABLE configVersion
 VARIABLE configTerm
 
-vars == <<currentTerm, state, log, immediatelyCommitted, configVersion, configTerm, config>>
+vars == <<currentTerm, state, log, committed, configVersion, configTerm, config>>
 
 \* The set of all allowed config sets.
 AllConfigs == SUBSET Server
@@ -81,7 +81,7 @@ CanVoteForOplog(i, j, term) ==
     /\ currentTerm[i] < term
     /\ logOk
 
-\* Is a log entry 'e'=<<i, t>> immediately immediatelyCommitted in term 't' with a quorum 'Q'.
+\* Is a log entry 'e'=<<i, t>> immediately committed in term 't' with a quorum 'Q'.
 \* @type: (<<Int, Int>>, Set(SERVER)) => Bool;
 ImmediatelyCommitted(e, Q) == 
     LET eind == e[1] 
@@ -144,7 +144,7 @@ ConfigQuorumCheck(i) ==
 TermQuorumCheck(i) ==
     \E Q \in Quorums(config[i]) : \A t \in Q : currentTerm[t] = currentTerm[i]    
 
-\* Check whether the entry at "index" on "primary" is immediatelyCommitted in the primary's current config.
+\* Check whether the entry at "index" on "primary" is committed in the primary's current config.
 IsCommitted(index, primary) ==
     \* The primary must contain such an entry.
     /\ Len(log[primary]) >= index
@@ -158,22 +158,22 @@ IsCommitted(index, primary) ==
             /\ currentTerm[s] = currentTerm[primary]  \* they are in the same term.
 
 \*
-\* This is the precondition about immediatelyCommitted oplog entries that must be satisfied
+\* This is the precondition about committed oplog entries that must be satisfied
 \* on a primary server s in order for it to execute a reconfiguration.
 \*
 \* When a primary is first elected in term T, we can be sure that it contains
-\* all immediatelyCommitted entries from terms < T. During its reign as primary in term T
+\* all committed entries from terms < T. During its reign as primary in term T
 \* though, it needs to make sure that any entries it commits in its own term are
 \* correctly transferred to new configurations. That is, before leaving a
-\* configuration C, it must make sure that any entry it immediatelyCommitted in T is now
-\* immediatelyCommitted by the rules of configuration C i.e. it is "immediately immediatelyCommitted"
+\* configuration C, it must make sure that any entry it committed in T is now
+\* committed by the rules of configuration C i.e. it is "immediately committed"
 \* in C. That is, present on some quorum of servers in C that are in term T. 
 OplogCommitment(s) == 
-    \* The primary has immediatelyCommitted at least one entry in its term, or, no entries
-    \* have been immediatelyCommitted yet.
-    /\ (immediatelyCommitted = {}) \/ (\E c \in immediatelyCommitted : (c[2] = currentTerm[s]))
-    \* All entries immediatelyCommitted in the primary's term are immediatelyCommitted in its current config.
-    /\ \A c \in immediatelyCommitted : (c[2] = currentTerm[s]) => IsCommitted(c[1], s)
+    \* The primary has committed at least one entry in its term, or, no entries
+    \* have been committed yet.
+    /\ (committed = {}) \/ (\E c \in committed : (c[2] = currentTerm[s]))
+    \* All entries committed in the primary's term are committed in its current config.
+    /\ \A c \in committed : (c[2] = currentTerm[s]) => IsCommitted(c[1], s)
 
 --------------------------------------------------------------------------------
 
@@ -186,7 +186,7 @@ OplogCommitment(s) ==
 ClientRequest(i) ==
     /\ state[i] = Primary
     /\ log' = [log EXCEPT ![i] = Append(log[i], currentTerm[i])]
-    /\ UNCHANGED <<currentTerm, state, immediatelyCommitted, config, configVersion, configTerm>>
+    /\ UNCHANGED <<currentTerm, state, committed, config, configVersion, configTerm>>
 
 \* Node 'i' gets a new log entry from node 'j'.
 GetEntries(i, j) ==
@@ -206,7 +206,7 @@ GetEntries(i, j) ==
               newEntry      == log[j][newEntryIndex]
               newLog        == Append(log[i], newEntry) IN
               /\ log' = [log EXCEPT ![i] = newLog]
-    /\ UNCHANGED <<immediatelyCommitted, currentTerm, state, config, configVersion, configTerm>>
+    /\ UNCHANGED <<committed, currentTerm, state, config, configVersion, configTerm>>
 
 \*  Node 'i' rolls back against the log of node 'j'.  
 RollbackEntries(i, j) ==
@@ -214,7 +214,7 @@ RollbackEntries(i, j) ==
     /\ CanRollback(i, j)
     \* Roll back one log entry.
     /\ log' = [log EXCEPT ![i] = SubSeq(log[i], 1, Len(log[i])-1)]
-    /\ UNCHANGED <<immediatelyCommitted, currentTerm, state, config, configVersion, configTerm>>
+    /\ UNCHANGED <<committed, currentTerm, state, config, configVersion, configTerm>>
 
 \* Node 'i' gets elected as a primary.
 BecomeLeader(i, voteQuorum) == 
@@ -233,7 +233,7 @@ BecomeLeader(i, voteQuorum) ==
                     ELSE state[s]]
     \* Update config's term upon becoming primary.
     /\ configTerm' = [configTerm EXCEPT ![i] = newTerm]
-    /\ UNCHANGED <<log, immediatelyCommitted, config, configVersion>>   
+    /\ UNCHANGED <<log, committed, config, configVersion>>   
             
 \* Primary 'i' commits its latest log entry.
 CommitEntry(i, commitQuorum) ==
@@ -247,9 +247,9 @@ CommitEntry(i, commitQuorum) ==
     /\ log[i][ind] = currentTerm[i]
     \* all nodes have this log entry and are in the term of the leader.
     /\ ImmediatelyCommitted(<<ind,currentTerm[i]>>, commitQuorum)
-    \* Don't mark an entry as immediatelyCommitted more than once.
-    /\ ~\E c \in immediatelyCommitted : c[1] = ind /\ c[2] = currentTerm[i] 
-    /\ immediatelyCommitted' = immediatelyCommitted \cup {<<ind, currentTerm[i]>>}
+    \* Don't mark an entry as committed more than once.
+    /\ ~\E c \in committed : c[1] = ind /\ c[2] = currentTerm[i] 
+    /\ committed' = committed \cup {<<ind, currentTerm[i]>>}
     /\ UNCHANGED <<currentTerm, state, log, config, configVersion, configTerm>>
 
 \* Action that exchanges terms between two nodes and step down the primary if
@@ -259,7 +259,7 @@ CommitEntry(i, commitQuorum) ==
 \* strictly necessary for guaranteeing safety.
 UpdateTerms(i, j) == 
     /\ UpdateTermsExpr(i, j)
-    /\ UNCHANGED <<log, immediatelyCommitted, config, configVersion, configTerm>>
+    /\ UNCHANGED <<log, committed, config, configVersion, configTerm>>
 
 
 \* A reconfig occurs on node i. The node must currently be a leader.
@@ -273,7 +273,7 @@ Reconfig(i, newConfig) ==
     /\ configTerm' = [configTerm EXCEPT ![i] = currentTerm[i]]
     /\ configVersion' = [configVersion EXCEPT ![i] = configVersion[i] + 1]
     /\ config' = [config EXCEPT ![i] = newConfig]
-    /\ UNCHANGED <<currentTerm, state, log, immediatelyCommitted>>
+    /\ UNCHANGED <<currentTerm, state, log, committed>>
 
 \* Node i sends its current config to node j.
 SendConfig(i, j) ==
@@ -282,13 +282,13 @@ SendConfig(i, j) ==
     /\ configVersion' = [configVersion EXCEPT ![j] = configVersion[i]]
     /\ configTerm' = [configTerm EXCEPT ![j] = configTerm[i]]
     /\ config' = [config EXCEPT ![j] = config[i]]
-    /\ UNCHANGED <<currentTerm, state, log, immediatelyCommitted>>
+    /\ UNCHANGED <<currentTerm, state, log, committed>>
 
 Init == 
     /\ currentTerm = [i \in Server |-> 0]
     /\ state       = [i \in Server |-> Secondary]
     /\ log = [i \in Server |-> <<>>]
-    /\ immediatelyCommitted = {}
+    /\ committed = {}
     /\ configVersion =  [i \in Server |-> 1]
     /\ configTerm    =  [i \in Server |-> 0]
     /\ \E initConfig \in AllConfigs :
@@ -331,14 +331,14 @@ LogMatching ==
         (\E j \in DOMAIN log[t] : i = j /\ log[s][i] = log[t][j]) => 
         (SubSeq(log[s],1,i) = SubSeq(log[t],1,i)) \* prefixes must be the same.
 
-\* When a node gets elected as primary it contains all entries immediatelyCommitted in previous terms.
+\* When a node gets elected as primary it contains all entries committed in previous terms.
 LeaderCompleteness == 
     \A s \in Server : (state[s] = Primary) => 
-        \A c \in immediatelyCommitted : (c[2] < currentTerm[s] => InLog(<<c[1],c[2]>>, s))
+        \A c \in committed : (c[2] < currentTerm[s] => InLog(<<c[1],c[2]>>, s))
 
-\* \* If two entries are immediatelyCommitted at the same index, they must be the same entry.
+\* \* If two entries are committed at the same index, they must be the same entry.
 StateMachineSafety == 
-    \A c1, c2 \in immediatelyCommitted : (c1[1] = c2[1]) => (c1 = c2)
+    \A c1, c2 \in committed : (c1[1] = c2[1]) => (c1 = c2)
 
 
 
